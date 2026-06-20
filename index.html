@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="MR-CUSSP: Multi-Robot Coordination for Planning under Context Uncertainty (IROS 2026). A two-stage approach using CIMOP for coordinated context inference and LCBS for collision-free lexicographic multi-robot path planning.">
+  <meta property="og:title" content="Multi-Robot Coordination for Planning under Context Uncertainty"/>
+  <meta property="og:description" content="MR-CUSSP (IROS 2026): coordinated context inference with CIMOP and lexicographic conflict-based search with LCBS."/>
+  <meta property="og:url" content="URL OF THE WEBSITE"/>
+  <meta property="og:image" content="static/images/fig1_overview.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+  <meta name="twitter:title" content="Multi-Robot Coordination for Planning under Context Uncertainty">
+  <meta name="twitter:description" content="MR-CUSSP (IROS 2026): CIMOP for context inference and LCBS for lexicographic multi-robot path planning.">
+  <meta name="twitter:image" content="static/images/fig1_overview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="keywords" content="multi-robot systems, MAPF, context inference, lexicographic planning, conflict-based search, IROS 2026, MR-CUSSP, CIMOP, LCBS">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+  <title>MR-CUSSP</title>
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+</head>
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Multi-Robot Coordination for Planning under Context Uncertainty</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                <a href="https://www.pulkitrustagi.com" target="_blank">Pulkit Rustagi</a><sup>1</sup>,
+                <a href="https://kylewray.com" target="_blank">Kyle Hollins Wray</a><sup>2</sup>, and
+                <a href="https://www.sandhyasai.com" target="_blank">Sandhya Saisubramanian</a><sup>1</sup>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>Collaborative Robotics and Intelligent Systems
+                (CoRIS) Institute, Oregon State University</span><br>
+              <span class="author-block"><sup>2</sup>Khoury College of Computer Sciences, Northeastern University</span>
+            </div>
+
+            <div class="is-size-5 publication-authors" style="margin-top: 8px;">
+              <span class="author-block"><b>International Conference on Intelligent Robots and Systems (IROS), 2026</b></span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- Paper PDF link -->
+                <span class="link-block">
+                  <a href="static/pdfs/mr_cussp_paper.pdf" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+
+              <!-- Code link -->
+            <span class="link-block">
+              <a href="https://github.com/Intelligent-Reliable-Autonomous-Systems/MR-CUSSP" target="_blank"
+              class="external-link button is-normal is-rounded is-dark">
+              <span class="icon">
+                <i class="fab fa-github"></i>
+              </span>
+              <span>Code</span>
+            </a>
+          </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Teaser figure (Fig. 1) -->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="static/images/fig1_overview.png" alt="MR-CUSSP overview" style="width: 70%; max-width: 720px; display: block; margin: 0 auto; border-radius: 10px;"/>
+      <p class="subtitle has-text-centered">
+        Multiple robots share a belief over the true context. Accurate context-relevant observations
+        are available only when robots reach a required configuration at a landmark (for example, a chain at
+        \(\ell_1\) and a ring at \(\ell_2\)). After inferring the context, robots compute collision-free plans
+        aligned with the context-induced objective preferences to reach their goals.
+      </p>
+    </div>
+  </div>
+</section>
+<!-- End teaser -->
+
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            <span style="font-size: 1.28em;">
+              Real-world robots often operate in settings where objective priorities depend on the
+              <em>underlying context</em> of operation. When the underlying context is unknown a priori,
+              multiple robots may have to coordinate to gather informative observations to infer the context,
+              since acting based on an incorrect context can lead to misaligned and unsafe behavior.
+              Once the underlying true context is inferred, the robots optimize their task-specific objectives
+              in the preference order induced by the context. We formalize this problem as a
+              <em>Multi-Robot Context-Uncertain Stochastic Shortest Path</em> (MR-CUSSP), which captures
+              context-relevant information at landmark states through joint observations. Our two-stage solution
+              approach is composed of (1) <em>CIMOP</em> (Coordinated Inference for Multi-Objective Planning),
+              which computes plans that guide robots toward informative landmarks to efficiently infer the true
+              context, and (2) <em>LCBS</em> (Lexicographic Conflict-Based Search) for collision-free multi-robot
+              path planning with lexicographic objective preferences induced by the context. We evaluate the
+              algorithms using three simulated domains and demonstrate practical applicability using five mobile
+              robots in the salp domain setup.
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+
+<!-- Approach overview -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-centered has-text-centered">Approach Overview</h2>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-five-sixths">
+          <img src="static/images/fig2_approach.png" alt="MR-CUSSP solution approach overview" style="width: 100%; max-width: 960px; display: block; margin: 0 auto; border-radius: 10px;"/>
+          <p class="subtitle has-text-centered">
+            A most-likely-outcome determinization first yields a discrete graph representation of the stochastic
+            domain. <b>CIMOP</b> prioritizes visiting landmark states that minimize belief entropy and assigns robots
+            accordingly, updating the shared belief from joint observations at landmarks. Once the context is inferred
+            (\(c_g\)), the induced lexicographic ordering \(\Theta(c_g)\) and a heuristic drive task planning.
+            <b>LCBS</b> uses lexicographic \(A^*\) to compute preference-aligned paths, detects conflicts in the joint
+            plan, and iteratively adds constraints via binary branching until a conflict-free solution is found.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Experiments in Simulation -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3 has-text-centered">Experiments in Simulation</h2>
+
+      <div class="content">
+        <h3 class="subtitle has-text-centered">
+          <u>Results across three domains: salp, warehouse, and forest firefighting</u>
+        </h3>
+        <img src="static/images/fig3_results_grid.png" alt="Results across three domains" style="width: 100%; display: block; margin: 0 auto; border-radius: 10px;"/>
+        <p class="subtitle has-text-centered">
+          Belief entropy for 5 and 35 robots, cumulative entropy under increasing redundant landmarks, and planning
+          time with growing team size. CIMOP infers the context faster and scales far better than ARVI and SAIA across
+          all domains. All results are averaged over five instances with randomized starting locations.
+        </p>
+      </div>
+
+      <div class="content">
+        <h3 class="subtitle has-text-centered">
+          <u>Success rate under constrained planning time</u>
+        </h3>
+        <img src="static/images/fig4_success_rate.png" alt="Success rate under time budget" style="width: 62%; max-width: 640px; border-radius: 10px; display: block; margin: 0 auto;"/>
+        <p class="subtitle has-text-centered">
+          Success rate on 15 instances (five from each domain) as the planning-time budget tightens from 120 to 5
+          seconds, with five robots and three objectives. LCBS holds 100% success at every budget, while
+          BB-MO-CBS-\(k\), MO-CBS, and Scalarized CBS degrade as time shrinks.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- Experiments with Mobile Robots -->
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-2" style="text-align: center; padding-bottom: 10px;">Experiments with Mobile Robots</h2>
+        <p class="subtitle" style="text-align: center;">
+          We validate the full two-stage approach on five mobile robots in the salp domain using the Robotarium
+          testbed. Robots adapt their formations to satisfy observation requirements at landmarks, collapse the shared
+          belief in real time, and then execute preference-aligned plans under the inferred context.
+        </p>
+
+        <div class="content">
+          <h3 class="subtitle has-text-centered">
+            <u>Execution sequence with five robots</u>
+          </h3>
+          <img src="static/images/fig5_hardware_sequence.png" alt="Hardware execution sequence" style="width: 90%; max-width: 900px; border-radius: 10px; display: block; margin: 0 auto;"/>
+          <p class="subtitle has-text-centered">
+            (1) Start with a uniform belief over three contexts. (2) Form a chain to observe the cave landmark and
+            update the belief. (3) Four robots form a ring to observe the crevice landmark and collapse the belief.
+            (4) Robots independently plan under the inferred context \(c_2\), prioritizing minimizing coral damage over
+            energy and time to goal.
+          </p>
+        </div>
+
+        <div class="content">
+          <video id="overview-video" controls playsinline preload="metadata"
+                 style="width: 100%; max-width: 960px; display: block; margin: 0 auto; border-radius: 10px;">
+            <source src="static/videos/iros2026_overview.mp4" type="video/mp4">
+          </video>
+        </div>
+
+        <div class="content">
+          <h3 class="subtitle has-text-centered">
+            <u>Total planning time (Stage 1 + Stage 2)</u>
+          </h3>
+          <img src="static/images/fig6_planning_time.png" alt="Total planning time by approach" style="width: 75%; max-width: 760px; border-radius: 10px; display: block; margin: 0 auto;"/>
+          <p class="subtitle has-text-centered">
+            CIMOP + LCBS (Ours) completes both stages in under 6 seconds, while other combinations require 40 to 120
+            seconds, enabling real-time execution on physical robots.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- BibTeX citation  (TODO: confirm final IROS 2026 proceedings fields) -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Cite as</h2>
+    <pre><code>@inproceedings{rustagi2026mrcussp,
+  title     = {Multi-Robot Coordination for Planning under Context Uncertainty},
+  author    = {Rustagi, Pulkit and Wray, Kyle Hollins and Saisubramanian, Sandhya},
+  booktitle = {Proceedings of the thirty-ninth IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+  year      = {2026}
+}</code></pre>
+  </div>
+</section>
+<!-- End BibTeX citation -->
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            <br> This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
